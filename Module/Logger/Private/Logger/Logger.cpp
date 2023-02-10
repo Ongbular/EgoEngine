@@ -10,6 +10,7 @@ static const char* gDedicatedLoggerName = "EngineLogger";
 static std::filesystem::path gLoggingFilePath{};
 static const std::string gPatternWithSymbol{ "[%Y-%m-%d %H:%M:%S.$e][%l]%!: %v" };
 static const std::string gPatternWithoutSymbol{ "[[%Y-%m-%d %H:%M:%S.$e]][%l] %v" };
+static std::filesystem::path gEngineDir{};
 
 void Logger::Initialize()
 {
@@ -24,6 +25,8 @@ void Logger::Initialize()
 	logger->sinks()[FILE_SINK_INDEX]->set_pattern(gPatternWithSymbol);
 
 	spdlog::register_logger(logger);
+
+	gEngineDir = std::filesystem::current_path().parent_path();
 	mbInitialized = true;
 }
 
@@ -103,8 +106,7 @@ ELogLevel Logger::GetLevel()
 
 std::filesystem::path Logger::GetLogDir()
 {
-	constexpr auto rootDir = std::filesystem::current_path().parent_path();
-	return rootDir / TEXT("Logs");
+	return gEngineDir / TEXT("Logs");
 }
 
 void Logger::Log(const spdlog::source_loc sourceLoc, const ELogLevel level, std::wstringstream& stream)
