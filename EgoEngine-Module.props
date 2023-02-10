@@ -3,7 +3,9 @@
   <ImportGroup Label="PropertySheets">
     <Import Project="EgoEngine-Default.props" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="UserMacros">
+    <ModuleOutDir>$(EngineIntDir)</ModuleOutDir>
+  </PropertyGroup>
   <PropertyGroup>
     <TargetName>EgoEngine-$(ProjectName)</TargetName>
   </PropertyGroup>
@@ -18,6 +20,34 @@
       </PrecompiledHeaderFile>
       <PreprocessorDefinitions>$(ProjectName)_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(ModuleOutDir)</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>if not exist "$(EngineBinDir)" mkdir "$(EngineBinDir)"
+
+if not "$(ConfigurationType)"=="DynamicLibrary" (
+    goto end
+)
+
+move /y "$(TargetPath)" "$(EngineBinDir)"
+set PDB_PATH="$(TargetDir)$(TargetName).pdb"
+if exist %PDB_PATH% (
+move /y %PDB_PATH% "$(EngineBinDir)")
+
+:end</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BuildMacro Include="ModuleOutDir">
+      <Value>$(ModuleOutDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+  <Target Name="DeleteModuleBinaries" BeforeTargets="CoreClean">
+    <Delete Files="$(EngineBinDir)$(TargetName).dll;$(EngineBinDir)$(TargetName).pdb" ContinueOnError="true" />
+  </Target>
 </Project>

@@ -10,7 +10,7 @@
     <PrivateDir>$(ProjectDir)Private\</PrivateDir>
   </PropertyGroup>
   <PropertyGroup>
-    <OutDir>$(EngineIntDir)$(ProjectName)\$(Configuration)\Binary\</OutDir>
+    <OutDir>$(EngineIntDir)$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(EngineIntDir)$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
