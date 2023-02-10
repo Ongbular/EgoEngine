@@ -1,8 +1,10 @@
 #pragma once
 
-#include "spdlog/spdlog.h"
 #include "Logger/LoggerDLL.h"
 #include "Logger/LogLevel.h"
+
+#include "spdlog/spdlog.h"
+// #include "spdlog/async.h"
 
 class LOGGER_API Logger final
 {

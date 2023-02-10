@@ -1,5 +1,6 @@
 #include "Logger/LoggerPCH.h"
 #include "Logger/Logger.h"
+
 #include "spdlog/sinks/ostream_sink.h"
 #include "spdlog/sinks/basic_file_sink.h"
 
@@ -8,46 +9,55 @@
 
 static const char* gDedicatedLoggerName = "EngineLogger";
 static std::filesystem::path gLoggingFilePath{};
-static const std::string gPatternWithSymbol{ "[%Y-%m-%d %H:%M:%S.$e][%l]%!: %v" };
-static const std::string gPatternWithoutSymbol{ "[[%Y-%m-%d %H:%M:%S.$e]][%l] %v" };
-static std::filesystem::path gEngineDir{};
 
 void Logger::Initialize()
 {
+	static const std::string patternWithSymbol{ "[%Y-%m-%d %H:%M:%S.$e][%l]%!: %v" };
+
 	assert(!mbInitialized);
 
-	gLoggingFilePath = GetLogDir() / TEXT("OwlEngine-Running.log");
-	assert(!std::filesystem::exists(gLoggingFilePath));
+	gLoggingFilePath = GetLogDir() / TEXT("EgoEngine-Running.log");
+	if (std::filesystem::exists(gLoggingFilePath))
+	{
+		std::filesystem::remove(gLoggingFilePath);
+	}
 
 	auto fileSink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(gLoggingFilePath);
 
+	// spdlog::init_thread_pool(1024, 1);
+	// const auto logger = std::make_shared<spdlog::async_logger>(gDedicatedLoggerName, fileSink, spdlog::thread_pool(), spdlog::async_overflow_policy::block);
 	const auto logger = std::make_shared<spdlog::logger>(gDedicatedLoggerName, fileSink);
-	logger->sinks()[FILE_SINK_INDEX]->set_pattern(gPatternWithSymbol);
+	assert(logger.get());
 
 	spdlog::register_logger(logger);
 
-	gEngineDir = std::filesystem::current_path().parent_path();
+	logger->flush_on(spdlog::level::info);
+	logger->sinks()[FILE_SINK_INDEX]->set_pattern(patternWithSymbol);
+
 	mbInitialized = true;
 }
 
 std::filesystem::path Logger::Deinitialize(const bool bAborted)
 {
+	static const std::string patternWithoutSymbol{ "[%Y-%m-%d %H:%M:%S.$e][%l] %v" };
+
 	assert(mbInitialized);
 
 	DeactivateConsoleSink();
 
-	const auto logger = getLoggerPtr();
-	logger->set_pattern(gPatternWithoutSymbol);
+	auto logger = getLoggerPtr();
+	logger->set_pattern(patternWithoutSymbol);
 
 	const auto level = bAborted ? spdlog::level::level_enum::err : spdlog::level::level_enum::info;
 
 	logger->log(spdlog::level::info, TEXT("Closing log file..."));
-	spdlog::drop(gDedicatedLoggerName);
+	logger.reset();
+	
 	spdlog::shutdown();
 
 	assert(std::filesystem::exists(gLoggingFilePath));
 
-	auto finalLogFilename = std::format(TEXT("OwlEngine-{}.log"), getNowTimeString());
+	auto finalLogFilename = std::format(TEXT("EgoEngine-{}.log"), getNowTimeString());
 	finalLogFilename = GetLogDir() / finalLogFilename;
 
 	std::filesystem::rename(gLoggingFilePath, finalLogFilename);
@@ -106,7 +116,9 @@ ELogLevel Logger::GetLevel()
 
 std::filesystem::path Logger::GetLogDir()
 {
-	return gEngineDir / TEXT("Logs");
+	static const std::filesystem::path engineDir = std::filesystem::current_path().parent_path().parent_path();
+
+	return engineDir / TEXT("Logs");
 }
 
 void Logger::Log(const spdlog::source_loc sourceLoc, const ELogLevel level, std::wstringstream& stream)
@@ -131,10 +143,7 @@ void Logger::Log(const ELogLevel level, std::wstringstream& stream)
 
 std::shared_ptr<spdlog::logger> Logger::getLoggerPtr()
 {
-	const auto ret = spdlog::get(gDedicatedLoggerName);
-	assert(ret.get());
-
-	return ret;
+	return spdlog::get(gDedicatedLoggerName);
 }
 
 std::wstring Logger::getNowTimeString()
