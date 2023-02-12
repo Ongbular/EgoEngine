@@ -4,7 +4,7 @@
     <ClCompile Include="src\simpleini\ConvertUTF.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\simpleini\ConvertUTF.h" />
-    <ClInclude Include="src\simpleini\SimpleIni.h" />
+    <ClInclude Include="include\simpleini\ConvertUTF.h" />
+    <ClInclude Include="include\simpleini\SimpleIni.h" />
   </ItemGroup>
 </Project>
