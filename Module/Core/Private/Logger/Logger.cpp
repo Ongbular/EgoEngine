@@ -1,6 +1,7 @@
-#include "Logger/LoggerPCH.h"
+#include "Core/CorePCH.h"
 #include "Logger/Logger.h"
 
+#include "spdlog/spdlog.h"
 #include "spdlog/sinks/ostream_sink.h"
 #include "spdlog/sinks/basic_file_sink.h"
 
@@ -8,7 +9,17 @@
 #define CONSOLE_SINK_INDEX (1)
 
 static const char* gDedicatedLoggerName = "EngineLogger";
-static std::filesystem::path gLoggingFilePath{};
+static Path gLoggingFilePath{};
+
+std::shared_ptr<spdlog::logger> GetLoggerPtr()
+{
+	return spdlog::get(gDedicatedLoggerName);
+}
+
+spdlog::level::level_enum CastLevel(const ELogLevel level)
+{
+	return static_cast<spdlog::level::level_enum>(level);
+}
 
 void Logger::Initialize()
 {
@@ -16,7 +27,7 @@ void Logger::Initialize()
 
 	assert(!mbInitialized);
 
-	gLoggingFilePath = GetLogDir() / TEXT("EgoEngine-Running.log");
+	gLoggingFilePath = Paths::GetLogDir() / TEXT("EgoEngine-Running.log");
 	if (std::filesystem::exists(gLoggingFilePath))
 	{
 		std::filesystem::remove(gLoggingFilePath);
@@ -37,7 +48,7 @@ void Logger::Initialize()
 	mbInitialized = true;
 }
 
-std::filesystem::path Logger::Deinitialize(const bool bAborted)
+Path Logger::Deinitialize(const bool bAborted)
 {
 	static const std::string patternWithoutSymbol{ "[%Y-%m-%d %H:%M:%S.$e][%l] %v" };
 
@@ -45,7 +56,7 @@ std::filesystem::path Logger::Deinitialize(const bool bAborted)
 
 	DeactivateConsoleSink();
 
-	auto logger = getLoggerPtr();
+	auto logger = GetLoggerPtr();
 	logger->set_pattern(patternWithoutSymbol);
 
 	const auto level = bAborted ? spdlog::level::level_enum::err : spdlog::level::level_enum::info;
@@ -58,7 +69,7 @@ std::filesystem::path Logger::Deinitialize(const bool bAborted)
 	assert(std::filesystem::exists(gLoggingFilePath));
 
 	auto finalLogFilename = std::format(TEXT("EgoEngine-{}.log"), getNowTimeString());
-	finalLogFilename = GetLogDir() / finalLogFilename;
+	finalLogFilename = Paths::GetLogDir() / finalLogFilename;
 
 	std::filesystem::rename(gLoggingFilePath, finalLogFilename);
 
@@ -83,12 +94,12 @@ void Logger::DeactivateConsoleSink()
 		return;
 	}
 
-	getLoggerPtr()->sinks().pop_back();
+	GetLoggerPtr()->sinks().pop_back();
 }
 
 void Logger::SetFileLogPattern(const char* pattern)
 {
-	const auto logger = getLoggerPtr();
+	const auto logger = GetLoggerPtr();
 
 	assert(logger.get() && logger->sinks().size() == 1);
 	logger->sinks()[FILE_SINK_INDEX]->set_pattern(pattern);
@@ -101,27 +112,20 @@ void Logger::SetConsoleLogPattern(const char* pattern)
 		return;
 	}
 
-	getLoggerPtr()->sinks()[CONSOLE_SINK_INDEX]->set_pattern(pattern);
+	GetLoggerPtr()->sinks()[CONSOLE_SINK_INDEX]->set_pattern(pattern);
 }
 
 void Logger::SetLevel(ELogLevel level)
 {	
-	getLoggerPtr()->set_level(static_cast<spdlog::level::level_enum>(level));
+	GetLoggerPtr()->set_level(static_cast<spdlog::level::level_enum>(level));
 }
 
 ELogLevel Logger::GetLevel()
 {
-	return static_cast<ELogLevel>(getLoggerPtr()->level());
+	return static_cast<ELogLevel>(GetLoggerPtr()->level());
 }
 
-std::filesystem::path Logger::GetLogDir()
-{
-	static const std::filesystem::path engineDir = std::filesystem::current_path().parent_path().parent_path();
-
-	return engineDir / TEXT("Logs");
-}
-
-void Logger::Log(const spdlog::source_loc sourceLoc, const ELogLevel level, std::wstringstream& stream)
+void Logger::Log(const ELogLevel level, std::wstringstream& stream)
 {
 	constexpr uint32_t maxLogLength = 512;
 
@@ -132,18 +136,20 @@ void Logger::Log(const spdlog::source_loc sourceLoc, const ELogLevel level, std:
 	while (!stream.eof())
 	{
 		std::getline(stream, line);
-		getLoggerPtr()->log(sourceLoc, logLevel, line);
+		logImpl(nullptr, INVALID_VALUE, nullptr, level, line);
 	}
 }
 
-void Logger::Log(const ELogLevel level, std::wstringstream& stream)
+void Logger::logImpl(const char* file, int line, const char* function, const ELogLevel level, const std::wstring& message)
 {
-	Log({}, level, stream);
-}
+	const auto logger = GetLoggerPtr();
 
-std::shared_ptr<spdlog::logger> Logger::getLoggerPtr()
-{
-	return spdlog::get(gDedicatedLoggerName);
+	if (file == nullptr || line == INVALID_VALUE || function == nullptr)
+	{
+		logger->log(CastLevel(level), message);
+	}
+
+	logger->log({ file, line, function }, CastLevel(level), message);
 }
 
 std::wstring Logger::getNowTimeString()
@@ -161,7 +167,7 @@ std::wstring Logger::getNowTimeString()
 
 bool Logger::isConsoleSinkActivated()
 {
-	const auto logger = getLoggerPtr();
+	const auto logger = GetLoggerPtr();
 	assert(logger.get());
 
 	return logger->sinks().size() != CONSOLE_SINK_INDEX;

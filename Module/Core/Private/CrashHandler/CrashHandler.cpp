@@ -102,19 +102,17 @@ void CrashHandler::forceTerminate()
 		}
 		debugMessageStream << TEXT('\"');
 	}
-
-	const auto enginePath = EnginePaths::GetWorkingDir() / TEXT("OwlEngine.exe");
-	executeCrashReporter(logFilename, debugMessageStream.str(), enginePath);
+	
+	executeCrashReporter(logFilename, debugMessageStream.str());
 
 	abort();
 }
 
-void CrashHandler::executeCrashReporter(const std::filesystem::path& logFilePath, const std::wstring& debugMessage,
-                                        const std::filesystem::path& enginePath)
+void CrashHandler::executeCrashReporter(const Path& logFilePath, const std::wstring& debugMessage)
 {
-	const auto arguments = std::format(TEXT("{} {} {}"), logFilePath.generic_wstring(), debugMessage,
-	                                   enginePath.wstring());
-	const auto crashReporterPath = EnginePaths::GetWorkingDir() / TEXT("CrashReporter.exe");
+	const auto arguments = std::format(TEXT("{} {}"), logFilePath.generic_wstring(), debugMessage);
+
+	const auto crashReporterPath = Paths::GetBinariesDir() / TEXT("CrashReporter.exe");
 
 	ShellExecute(nullptr, TEXT("open"), crashReporterPath.c_str(), arguments.c_str(), nullptr, SW_HIDE);
 }

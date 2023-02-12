@@ -12,7 +12,6 @@
 #include <filesystem>
 
 #include "resource.h"
-#include "Logger/Logger.h"
 
 #define MAX_LOADSTRING 100
 
@@ -42,7 +41,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	if (FAILED(InitWindow(hInstance, nCmdShow, g_hWnd, className.c_str(), TEXT("EgoEngine"))))
 		return 0;
-			
+				
 	// Main message loop
 	MSG msg = { 0 };
 	while (WM_QUIT != msg.message)

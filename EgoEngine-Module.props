@@ -3,9 +3,7 @@
   <ImportGroup Label="PropertySheets">
     <Import Project="EgoEngine-Default.props" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros">
-    <ModuleOutDir>$(EngineIntDir)</ModuleOutDir>
-  </PropertyGroup>
+  <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <TargetName>EgoEngine-$(ProjectName)</TargetName>
   </PropertyGroup>
@@ -21,7 +19,7 @@
       <PreprocessorDefinitions>$(ProjectName)_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(ModuleOutDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(EngineIntDir)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -42,11 +40,7 @@ move /y %PDB_PATH% "$(EngineBinDir)")
 :end</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <BuildMacro Include="ModuleOutDir">
-      <Value>$(ModuleOutDir)</Value>
-    </BuildMacro>
-  </ItemGroup>
+  <ItemGroup />
   <Target Name="DeleteModuleBinaries" BeforeTargets="CoreClean">
     <Delete Files="$(EngineBinDir)$(TargetName).dll;$(EngineBinDir)$(TargetName).pdb" ContinueOnError="true" />
   </Target>

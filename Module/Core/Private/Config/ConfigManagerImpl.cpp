@@ -1,6 +1,6 @@
 #include "Core/CorePCH.h"
 #include "ConfigManagerImpl.h"
-#include "Misc/EnginePaths.h"
+#include "Misc/Paths.h"
 
 namespace fs = std::filesystem;
 
@@ -15,7 +15,7 @@ void ConfigManagerImpl::LoadConfigFiles()
 		return;
 	}
 
-	const auto configDir = EnginePaths::GetConfigDir();
+	const auto configDir = Paths::GetConfigDir();
 	if (!fs::exists(configDir))
 	{
 		return;

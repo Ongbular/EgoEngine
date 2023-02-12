@@ -1,4 +1,4 @@
-#include "Logger/LoggerPCH.h"
+#include "Core/CorePCH.h"
 #include "Logger/ScopedLogLevel.h"
 #include "Logger/Logger.h"
 

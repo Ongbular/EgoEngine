@@ -1,6 +1,8 @@
 #pragma once
 
-enum class ELogLevel : uint8_t
+#include "Core/CoreDefine.h"
+
+enum class ELogLevel : uint8
 {
 	Trace,
 	Debug,

@@ -25,9 +25,7 @@
 #include <format>
 #include <utility>
 
-#include "spdlog/spdlog.h"
-
-#include "CoreTypes.h"
-#include "CoreAssertion.h"
+#include "Core/CoreDefine.h"
+#include "Core/CoreAssertion.h"
 
 // Module Common includes end...

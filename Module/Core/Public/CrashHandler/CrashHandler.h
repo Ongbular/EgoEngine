@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreDLL.h"
-#include "Misc/EnginePaths.h"
+#include "Misc/Paths.h"
 
 class CrashHandler
 {
@@ -17,8 +17,7 @@ private:
 
 	static void forceTerminate();
 
-	static void executeCrashReporter(const std::filesystem::path& logFilePath, const std::wstring& debugMessage,
-	                                 const std::filesystem::path& enginePath);
+	static void executeCrashReporter(const Path& logFilePath, const std::wstring& debugMessage);
 
 	static std::wstring exceptionCodeToString(DWORD code);
 

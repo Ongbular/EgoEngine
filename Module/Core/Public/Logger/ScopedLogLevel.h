@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Logger/LoggerDLL.h"
+#include "Core/CoreDLL.h"
 #include "Logger/LogLevel.h"
 
-class LOGGER_API ScopedLogLevel final
+class CORE_API ScopedLogLevel final
 {
 public:
 	explicit ScopedLogLevel(ELogLevel level);

@@ -19,6 +19,9 @@
     <Filter Include="Windows">
       <UniqueIdentifier>{ed08c4a6-a0f1-4450-8317-bc9b5afd360f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Logger">
+      <UniqueIdentifier>{401074cf-aedd-468e-a128-3287086479c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Public\Config\ConfigManager.h">
@@ -36,9 +39,6 @@
     <ClInclude Include="Public\Config\IniValue.h">
       <Filter>Config</Filter>
     </ClInclude>
-    <ClInclude Include="Public\Core\CoreAlias.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Public\Core\CoreAPI.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -51,7 +51,7 @@
     <ClInclude Include="Public\Core\CorePCH.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Public\Core\CoreTypes.h">
+    <ClInclude Include="Public\Core\CoreDefine.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Public\CrashHandler\CrashHandler.h">
@@ -84,7 +84,7 @@
     <ClInclude Include="Public\Delegate\UniCastDelegate.h">
       <Filter>Delegate</Filter>
     </ClInclude>
-    <ClInclude Include="Public\Misc\EnginePaths.h">
+    <ClInclude Include="Public\Misc\Paths.h">
       <Filter>Misc</Filter>
     </ClInclude>
     <ClInclude Include="Public\Misc\SystemInfo.h">
@@ -117,6 +117,15 @@
     <ClInclude Include="Private\Config\ConfigManagerImpl.h">
       <Filter>Config</Filter>
     </ClInclude>
+    <ClInclude Include="Public\Logger\Logger.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Logger\LogLevel.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Logger\ScopedLogLevel.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Private\Windows\NativeWindow.cpp">
@@ -137,7 +146,7 @@
     <ClCompile Include="Private\Windows\WindowsEvent.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Private\Misc\EnginePaths.cpp">
+    <ClCompile Include="Private\Misc\Paths.cpp">
       <Filter>Misc</Filter>
     </ClCompile>
     <ClCompile Include="Private\Misc\SystemInfo.cpp">
@@ -172,6 +181,12 @@
     </ClCompile>
     <ClCompile Include="Private\Config\IniValue.cpp">
       <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Logger\Logger.cpp">
+      <Filter>Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Logger\ScopedLogLevel.cpp">
+      <Filter>Logger</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

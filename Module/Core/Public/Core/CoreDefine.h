@@ -38,3 +38,5 @@ using uint64 = unsigned __int64;
 */
 #define NON_INSTANTIABLE(TypeName) \
 	~TypeName() = delete; \
+
+#define INVALID_VALUE (-1)

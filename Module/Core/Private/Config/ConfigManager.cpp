@@ -18,7 +18,7 @@ void ConfigManager::LoadConfigFiles()
 
 std::vector<IniSection> ConfigManager::GetSections(const std::wstring& namePattern)
 {
-
+	return {};
 }
 
 ConfigManager::ConfigManager()

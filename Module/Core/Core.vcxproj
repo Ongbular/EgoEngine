@@ -26,12 +26,11 @@
     <ClInclude Include="Public\Config\IniSection.h" />
     <ClInclude Include="Public\Config\IniSectionNode.h" />
     <ClInclude Include="Public\Config\IniValue.h" />
-    <ClInclude Include="Public\Core\CoreAlias.h" />
     <ClInclude Include="Public\Core\CoreAPI.h" />
     <ClInclude Include="Public\Core\CoreAssertion.h" />
     <ClInclude Include="Public\Core\CoreDLL.h" />
     <ClInclude Include="Public\Core\CorePCH.h" />
-    <ClInclude Include="Public\Core\CoreTypes.h" />
+    <ClInclude Include="Public\Core\CoreDefine.h" />
     <ClInclude Include="Public\CrashHandler\CrashHandler.h" />
     <ClInclude Include="Public\Delegate\DelegateBase.h" />
     <ClInclude Include="Public\Delegate\DelegateEvent.h" />
@@ -42,7 +41,10 @@
     <ClInclude Include="Public\Delegate\MultiCastDelegate.h" />
     <ClInclude Include="Public\Delegate\TypeDefine.h" />
     <ClInclude Include="Public\Delegate\UniCastDelegate.h" />
-    <ClInclude Include="Public\Misc\EnginePaths.h" />
+    <ClInclude Include="Public\Logger\Logger.h" />
+    <ClInclude Include="Public\Logger\LogLevel.h" />
+    <ClInclude Include="Public\Logger\ScopedLogLevel.h" />
+    <ClInclude Include="Public\Misc\Paths.h" />
     <ClInclude Include="Public\Misc\SystemInfo.h" />
     <ClInclude Include="Public\Misc\Utils.h" />
     <ClInclude Include="Public\Windows\NativeWindow.h" />
@@ -67,7 +69,9 @@
     </ClCompile>
     <ClCompile Include="Private\CrashHandler\CrashHandler.cpp" />
     <ClCompile Include="Private\CrashHandler\StackWalker.cpp" />
-    <ClCompile Include="Private\Misc\EnginePaths.cpp" />
+    <ClCompile Include="Private\Logger\Logger.cpp" />
+    <ClCompile Include="Private\Logger\ScopedLogLevel.cpp" />
+    <ClCompile Include="Private\Misc\Paths.cpp" />
     <ClCompile Include="Private\Misc\SystemInfo.cpp" />
     <ClCompile Include="Private\Misc\Utils.cpp" />
     <ClCompile Include="Private\Windows\NativeWindow.cpp" />
@@ -76,6 +80,14 @@
     <ClCompile Include="Private\Windows\ProcessReceivingPipe.cpp" />
     <ClCompile Include="Private\Windows\ProcessSendingPipe.cpp" />
     <ClCompile Include="Private\Windows\WindowsEvent.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ThirdParty\simpleini\simpleini.vcxproj">
+      <Project>{42eaccc5-8745-42ae-baa8-bfffae13e85a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ThirdParty\spdlog\spdlog.vcxproj">
+      <Project>{526fbe17-b91b-4614-a643-f13031babe9d}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -153,11 +165,13 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/CorePCH.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ThirdPartyDir)spdlog\include\;$(ThirdPartyDir)simpleini\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -170,6 +184,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/CorePCH.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ThirdPartyDir)spdlog\include\;$(ThirdPartyDir)simpleini\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -177,6 +192,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -187,11 +203,13 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/CorePCH.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ThirdPartyDir)spdlog\include\;$(ThirdPartyDir)simpleini\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -204,6 +222,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/CorePCH.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ThirdPartyDir)spdlog\include\;$(ThirdPartyDir)simpleini\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -211,6 +230,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
