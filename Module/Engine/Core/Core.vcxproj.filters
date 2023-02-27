@@ -42,13 +42,10 @@
     <ClInclude Include="Include\Core\CoreAPI.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Core\CoreAssertion.h">
+    <ClInclude Include="Include\Core\Assertion.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Include\Core\CoreExport.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PCH.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Include\Core\CoreDefine.h">
@@ -126,6 +123,7 @@
     <ClInclude Include="Include\Logger\ScopedLogLevel.h">
       <Filter>Logger</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PCH.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Windows\NativeWindow.cpp">
@@ -161,9 +159,6 @@
     <ClCompile Include="Source\CrashHandler\StackWalker.cpp">
       <Filter>CrashHandler</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PCH.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Config\ConfigManager.cpp">
       <Filter>Config</Filter>
     </ClCompile>
@@ -188,5 +183,6 @@
     <ClCompile Include="Source\Logger\ScopedLogLevel.cpp">
       <Filter>Logger</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PCH.cpp" />
   </ItemGroup>
 </Project>
