@@ -27,7 +27,7 @@
     <ClInclude Include="Include\Config\IniSectionNode.h" />
     <ClInclude Include="Include\Config\IniValue.h" />
     <ClInclude Include="Include\Core\CoreAPI.h" />
-    <ClInclude Include="Include\Core\CoreAssertion.h" />
+    <ClInclude Include="Include\Core\Assertion.h" />
     <ClInclude Include="Include\Core\CoreExport.h" />
     <ClInclude Include="Source\PCH.h" />
     <ClInclude Include="Include\Core\CoreDefine.h" />

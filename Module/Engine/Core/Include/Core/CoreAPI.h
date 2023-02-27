@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Core/CoreDefine.h"
+#include "Core/Assertion.h"
 #include "Logger/Logger.h"
 #include "Logger/ScopedLogLevel.h"
 #include "Misc/Paths.h"

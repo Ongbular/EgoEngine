@@ -42,7 +42,7 @@
     <ClInclude Include="Include\Core\CoreAPI.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Core\CoreAssertion.h">
+    <ClInclude Include="Include\Core\Assertion.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Include\Core\CoreExport.h">
