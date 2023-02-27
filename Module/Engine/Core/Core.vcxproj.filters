@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Config">
+      <UniqueIdentifier>{8f82944c-446d-4d92-baa1-2ee14e537e82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{7a0864c6-61e4-4b0b-a1a9-67570982baf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CrashHandler">
+      <UniqueIdentifier>{5e93ab57-bd09-46ed-902d-51a5d1389b5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Delegate">
+      <UniqueIdentifier>{31546571-b6f5-445b-8ddd-8d23107e7f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{4d233bd9-3707-416a-8edf-cd00756897bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{ed08c4a6-a0f1-4450-8317-bc9b5afd360f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logger">
+      <UniqueIdentifier>{401074cf-aedd-468e-a128-3287086479c1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\Config\ConfigManager.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Config\IniKey.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Config\IniSection.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Config\IniSectionNode.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Config\IniValue.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\CoreAPI.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\CoreAssertion.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\CoreExport.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PCH.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\CoreDefine.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\CrashHandler\CrashHandler.h">
+      <Filter>CrashHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Delegate\DelegateBase.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Delegate\DelegateEvent.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Delegate\DelegateHandle.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Delegate\DelegateRawEvent.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Delegate\DelegateSharedEvent.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Delegate\DelegateStaticEvent.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Delegate\MultiCastDelegate.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Delegate\TypeDefine.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Delegate\UniCastDelegate.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Misc\Paths.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Misc\SystemInfo.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Misc\Utils.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Windows\NativeWindow.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Windows\PowerShell.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Windows\ProcessPipe.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Windows\ProcessReceivingPipe.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Windows\ProcessSendingPipe.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Windows\WindowsEvent.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CrashHandler\StackWalker.h">
+      <Filter>CrashHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Config\ConfigManagerImpl.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Logger\Logger.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Logger\LogLevel.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Logger\ScopedLogLevel.h">
+      <Filter>Logger</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Windows\NativeWindow.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\PowerShell.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\ProcessPipe.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\ProcessReceivingPipe.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\ProcessSendingPipe.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\WindowsEvent.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Misc\Paths.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Misc\SystemInfo.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Misc\Utils.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CrashHandler\CrashHandler.cpp">
+      <Filter>CrashHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CrashHandler\StackWalker.cpp">
+      <Filter>CrashHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PCH.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\ConfigManager.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\ConfigManagerImpl.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\IniKey.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\IniSection.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\IniSectionNode.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\IniValue.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Logger\Logger.cpp">
+      <Filter>Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Logger\ScopedLogLevel.cpp">
+      <Filter>Logger</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
