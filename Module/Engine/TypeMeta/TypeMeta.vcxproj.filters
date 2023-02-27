@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Include\TypeMeta\FunctionMeta.h">
+      <Filter>FieldMeta</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TypeMeta\FieldMeta.h">
+      <Filter>FieldMeta</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TypeMeta\PropertyMeta.h">
+      <Filter>FieldMeta</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TypeMeta\ClassMeta.h">
+      <Filter>TypeMeta</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TypeMeta\StructMeta.h">
+      <Filter>TypeMeta</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TypeMeta\TypeMeta.h">
+      <Filter>TypeMeta</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TypeMeta\TypeMetaDictionary.h">
+      <Filter>TypeMetaDictionary</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TypeMeta\TypeMetaGenerator.h">
+      <Filter>TypeMetaDictionary</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TypeMeta\TypeAlias.h">
+      <Filter>TypeMeta</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TypeMeta\StructMirrorImage.h">
+      <Filter>TypeMeta</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PCH.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\FunctionMeta.cpp">
+      <Filter>FieldMeta</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FieldMeta.cpp">
+      <Filter>FieldMeta</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PropertyMeta.cpp">
+      <Filter>FieldMeta</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ClassMeta.cpp">
+      <Filter>TypeMeta</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StructMeta.cpp">
+      <Filter>TypeMeta</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TypeMeta.cpp">
+      <Filter>TypeMeta</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TypeMetaDictionary.cpp">
+      <Filter>TypeMetaDictionary</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TypeMetaGenerator.cpp">
+      <Filter>TypeMetaDictionary</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StructMirrorImage.cpp">
+      <Filter>TypeMeta</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PCH.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="TypeMeta">
+      <UniqueIdentifier>{0cfecf92-01f7-4ed1-abda-4c498d09d59e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FieldMeta">
+      <UniqueIdentifier>{3744b5f9-fcc4-4355-90a8-272c8e07b932}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TypeMetaDictionary">
+      <UniqueIdentifier>{0b0cae8e-ed0a-4329-9976-e1502b7528ff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
